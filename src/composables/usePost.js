@@ -1,11 +1,11 @@
-import { $ref } from 'vue/macros'
+import { ref } from 'vue'
 
 export default function usePost() {
-    const posts = $ref([])
+    const posts = ref([])
 
     const fetchAll = async () => {
         const response = await("https://jsonplaceholder.typicode.posts")
-        posts = await response.json()
+        posts.value = await response.json()
     }
 
     return {

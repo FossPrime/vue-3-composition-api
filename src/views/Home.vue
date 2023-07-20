@@ -6,6 +6,6 @@
 <script setup>
 import usePost from '../composables/usePost.js'
 import PostCard from "../components/PostCard.vue";
-const {items: posts, fetchAll} = usePost()
+const {posts, fetchAll} = usePost()
 fetchAll()
 </script>

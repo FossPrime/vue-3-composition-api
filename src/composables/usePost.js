@@ -4,7 +4,7 @@ export default function usePost() {
     const posts = ref([])
 
     const fetchAll = async () => {
-        const response = await("https://jsonplaceholder.typicode.posts")
+        const response = await fetch('https://jsonplaceholder.typicode.com/posts')
         posts.value = await response.json()
     }
 

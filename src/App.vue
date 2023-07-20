@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import usePageRequests from './composables/usePageRequests'
 const {isLoading} = usePageRequests()
 </script>

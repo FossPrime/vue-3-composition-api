@@ -9,12 +9,11 @@
 import {useRoute} from 'vue-router'
 import {watch} from 'vue'
 import useResource from '../composables/useResource.js'
-import usePost from '../composables/usePost';
 const route = useRoute()
 
 //Post
-const {post, fetchOne: fetchOne} = usePost('posts')
-fetchOne(route.params.id)
+const {item: post, fetchOne: fetchPost} = useResource('posts')
+fetchPost(route.params.id)
 
 // User
 const {item: user, fetchOne: fetchUser} = useResource('users');

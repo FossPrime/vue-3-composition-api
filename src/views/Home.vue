@@ -6,6 +6,6 @@
 <script setup>
 import useResource from '../composables/useResource.js'
 import PostCard from "../components/PostCard.vue";
-const {items: posts, fetchAll} = useResource('posts')
-fetchAll()
+const {fetchAll} = useResource('posts')
+const posts = await fetchAll()
 </script>

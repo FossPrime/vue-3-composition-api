@@ -1,5 +1,5 @@
 <template>
-  <div v-if="post && user">
+  <div v-if="post">
     <h1 class="text-3xl">{{ post.title }}</h1>
     <div class="text-gray-500 mb-10">by {{ user.name }}</div>
     <div>{{ post.body }}</div>
@@ -7,19 +7,18 @@
 </template>
 <script setup>
 import {useRoute} from 'vue-router'
-import {watch} from 'vue'
+import {ref, watchEffect} from 'vue'
 import useResource from '../composables/useResource.js'
 const route = useRoute()
 
 //Post
-const {item: post, fetchOne: fetchPost} = useResource('posts')
-fetchPost(route.params.id)
+const {fetchOne: fetchPost} = useResource('posts')
+const post = ref(await fetchPost(route.params.id))
 
 // User
-const {item: user, fetchOne: fetchUser} = useResource('users');
-watch(
-  ()=>({...post.value}),
-  () => fetchUser(post.value.userId)
-)
-
+const {fetchOne: fetchUser} = useResource('users');
+const user = ref({})
+watchEffect(async () => {
+    user.value = await fetchUser(post.value.userId)
+})
 </script>
